@@ -73,6 +73,7 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) :
 
     fun start(callback: CountDownCallback) {
         listener = callback
+        currentValue = startValue
         countDown()
         listener?.onStart()
     }

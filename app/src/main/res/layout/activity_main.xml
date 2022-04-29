@@ -8,7 +8,7 @@
     <com.joshowen.countdowntextview.CountDownTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:pulsationEnabled="false"
+        app:pulsationEnabled="true"
         android:id="@+id/countdown"
         app:startTimerValue="20"
         app:endTimerValue="0"
