@@ -5,6 +5,7 @@ interface CountDownCallback {
     fun onResume() {}
     fun onStart() {}
     fun onStop() {}
+    fun onRestart() {}
     fun onTick(time : Int) {}
     fun onFinished()
 }

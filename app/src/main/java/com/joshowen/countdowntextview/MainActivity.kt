@@ -10,24 +10,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tvCountDown = findViewById<CountDownTextView>(R.id.countdown)
+        val cdtvCounter = findViewById<CountDownTextView>(R.id.countdown)
         val btnResume  = findViewById<Button>(R.id.btnStart)
         val btnPause = findViewById<Button>(R.id.btnPause)
         val btnStop = findViewById<Button>(R.id.btnStop)
+        val btnRestart = findViewById<Button>(R.id.btnRestart)
 
         btnResume.setOnClickListener {
-            tvCountDown.resume()
+            cdtvCounter.resume()
         }
 
         btnPause.setOnClickListener {
-            tvCountDown.pause()
+            cdtvCounter.pause()
         }
 
         btnStop.setOnClickListener {
-            tvCountDown.stop()
+            cdtvCounter.stop()
         }
 
-        tvCountDown.start(
+        btnRestart.setOnClickListener {
+            cdtvCounter.restart()
+        }
+
+        cdtvCounter.start(
             object : CountDownCallback {
 
                 override fun onFinished() {
@@ -51,7 +56,12 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onStop() {
                     super.onStop()
-                    Log.e("CountDown: " ,"onStart")
+                    Log.e("CountDown: " ,"onStop")
+                }
+
+                override fun onRestart() {
+                    super.onRestart()
+                    Log.e("CountDown: " ,"onRestart")
                 }
 
                 override fun onTick(time: Int) {
@@ -59,11 +69,6 @@ class MainActivity : AppCompatActivity() {
                     Log.e("CountDown: " , "onTick: $time")
                 }
             }
-
         )
-
-
-
     }
-
 }

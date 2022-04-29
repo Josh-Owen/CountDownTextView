@@ -18,17 +18,27 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
 
     private var endValue: Int = DEFAULT_END_VALUE
 
-    private var isPulsatingEnabled = DEFAULT_IS_PULSATION_ENABLED
+    private var isPulsationEnabled = DEFAULT_IS_PULSATION_ENABLED
 
     //endregion
 
     //region State
 
-    private var isPaused = false
-
-    private var isStopped = false
+    private var countDownState : CountDownState = CountDownState.IDLE
 
     private var isPlayingScaleAnimation: Boolean = false
+
+    //endregion
+
+    //region Handlers & Runnable
+
+    private var countDownHandler = Handler(Looper.getMainLooper())
+
+    private var updateRunnable = Runnable {
+        countDown()
+    }
+
+    //endregion
 
     //region Animations
 
@@ -54,7 +64,7 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
                     getInteger(R.styleable.CountDownTextView_startTimerValue, DEFAULT_START_VALUE)
                 endValue =
                     getInteger(R.styleable.CountDownTextView_endTimerValue, DEFAULT_END_VALUE)
-                isPulsatingEnabled = getBoolean(
+                isPulsationEnabled = getBoolean(
                     R.styleable.CountDownTextView_pulsationEnabled,
                     DEFAULT_IS_PULSATION_ENABLED
                 )
@@ -73,24 +83,33 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     fun start(callback: CountDownCallback) {
         listener = callback
         currentValue = startValue
-        countDown()
         listener?.onStart()
+        countDown()
     }
 
     fun stop() {
-        isStopped = true
+        countDownState = CountDownState.STOPPED
         listener?.onStop()
     }
 
     fun pause() {
-        isPaused = true
+        countDownState = CountDownState.PAUSED
         listener?.onPause()
     }
 
     fun resume() {
-        isPaused = false
-        countDown()
+        countDownState = CountDownState.PLAYING
         listener?.onResume()
+        countDown()
+    }
+
+    fun restart() {
+        text = ""
+        currentValue = startValue
+        countDownHandler.removeCallbacks(updateRunnable)
+        countDownState = CountDownState.PLAYING
+        listener?.onRestart()
+        countDown()
     }
 
     fun setEndTime(time : Int) {
@@ -104,25 +123,23 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     }
 
     fun enableOrDisableAnimation(isEnabled : Boolean) {
-        isPulsatingEnabled = isEnabled
+        isPulsationEnabled = isEnabled
     }
 
     //endregion
 
     //region Schedulers
     private fun scheduleCountDown(delay: Long) {
-        Handler(Looper.getMainLooper()).postDelayed({
-            countDown()
-        }, delay)
+        countDownHandler.postDelayed(updateRunnable, delay)
     }
     //endregion
 
     //region Countdown Logic
     private fun countDown() {
-        if (!isPaused && !isStopped) {
+        if (countDownState != CountDownState.PAUSED && countDownState != CountDownState.STOPPED && countDownState != CountDownState.FINISHED) {
             when {
                 isPlayingScaleAnimation -> {
-                    if (isPulsatingEnabled) {
+                    if (isPulsationEnabled) {
                         startAnimation(alphaAnimation)
                     }
                     scheduleCountDown(SCALE_ANIMATION_DURATION)
@@ -130,13 +147,14 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
                 currentValue != endValue -> {
                     text = currentValue.toString()
                     listener?.onTick(currentValue)
-                    if (isPulsatingEnabled) {
+                    if (isPulsationEnabled) {
                         startAnimation(scaleAnimation)
                     }
                     currentValue -= 1
                     scheduleCountDown(ALPHA_ANIMATION_DURATION)
                 }
                 else -> {
+                    countDownState = CountDownState.FINISHED
                     listener?.onFinished()
                 }
             }
