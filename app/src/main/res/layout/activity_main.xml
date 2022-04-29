@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         app:pulsationEnabled="true"
         android:id="@+id/countdown"
-        app:startTimerValue="20"
+        app:startTimerValue="10"
         app:endTimerValue="0"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

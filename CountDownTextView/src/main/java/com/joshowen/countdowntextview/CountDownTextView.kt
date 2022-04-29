@@ -6,8 +6,7 @@ import android.os.Looper
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-class CountDownTextView(context: Context, attrs: AttributeSet?) :
-    AppCompatTextView(context, attrs) {
+class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
 
     //region Variables
 
@@ -93,6 +92,21 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) :
         countDown()
         listener?.onResume()
     }
+
+    fun setEndTime(time : Int) {
+        endValue = time
+    }
+
+    fun setStartTime(time : Int) {
+        if(time > endValue) {
+            currentValue = startValue
+        }
+    }
+
+    fun enableOrDisableAnimation(isEnabled : Boolean) {
+        isPulsatingEnabled = isEnabled
+    }
+
     //endregion
 
     //region Schedulers
@@ -128,6 +142,6 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) :
             }
             isPlayingScaleAnimation = !isPlayingScaleAnimation
         }
-        //endregion
     }
+    //endregion
 }
