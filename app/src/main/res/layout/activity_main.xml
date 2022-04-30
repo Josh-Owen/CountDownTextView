@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:pulsationEnabled="true"
-        app:startTimerValue="10" />
+        app:startTimerValue="5" />
 
     <com.joshowen.countdowntextview.CountDownTextView
         android:id="@+id/countdown2"
@@ -33,7 +33,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:pulsationEnabled="true"
-        app:startTimerValue="10" />
+        app:startTimerValue="5" />
 
     <Button
         android:id="@+id/btnStop"
