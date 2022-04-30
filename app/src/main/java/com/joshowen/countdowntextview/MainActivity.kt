@@ -10,33 +10,41 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val cdtvCounter = findViewById<CountDownTextView>(R.id.countdown)
+        val tvCounter1 = findViewById<CountDownTextView>(R.id.countdown1)
+        val tvCounter2 = findViewById<CountDownTextView>(R.id.countdown2)
+
         val btnResume  = findViewById<Button>(R.id.btnStart)
         val btnPause = findViewById<Button>(R.id.btnPause)
         val btnStop = findViewById<Button>(R.id.btnStop)
         val btnRestart = findViewById<Button>(R.id.btnRestart)
 
         btnResume.setOnClickListener {
-            cdtvCounter.resume()
+            tvCounter2.resume()
         }
 
         btnPause.setOnClickListener {
-            cdtvCounter.pause()
+            tvCounter2.pause()
         }
 
         btnStop.setOnClickListener {
-            cdtvCounter.stop()
+            tvCounter2.stop()
         }
 
         btnRestart.setOnClickListener {
-            cdtvCounter.restart()
+            tvCounter2.restart()
         }
 
-        cdtvCounter.start(
+
+        tvCounter1.enableOrDisableAnimation(false)
+        tvCounter1.start {
+            Log.e("CountDown: " ,"onFinished 1")
+        }
+
+        tvCounter2.start(
             object : CountDownCallback {
 
                 override fun onFinished() {
-                    Log.e("CountDown: " ,"onFinished")
+                    Log.e("CountDown: " ,"onFinished 2")
                 }
 
                 override fun onPause() {

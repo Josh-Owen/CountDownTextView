@@ -24,7 +24,7 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
 
     //region State
 
-    private var countDownState : CountDownState = CountDownState.IDLE
+    private var countDownState: CountDownState = CountDownState.IDLE
 
     private var isPlayingScaleAnimation: Boolean = false
 
@@ -51,7 +51,10 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     //endregion
 
     //region Callbacks
+
     private var listener: CountDownCallback? = null
+
+    private var onFinished: (() -> Unit)? = null
 
     //endregion
 
@@ -78,12 +81,19 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     }
     //endregion
 
-    //region Timer Functions
+    //region Timer Functions / Customisation
 
     fun start(callback: CountDownCallback) {
         listener = callback
         currentValue = startValue
         listener?.onStart()
+        countDown()
+    }
+
+    fun start(onFinished: () -> Unit) {
+        currentValue = startValue
+        listener?.onStart()
+        this.onFinished = onFinished
         countDown()
     }
 
@@ -98,9 +108,11 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     }
 
     fun resume() {
-        countDownState = CountDownState.PLAYING
-        listener?.onResume()
-        countDown()
+        if (countDownState != CountDownState.STOPPED) {
+            countDownState = CountDownState.PLAYING
+            listener?.onResume()
+            countDown()
+        }
     }
 
     fun restart() {
@@ -112,23 +124,23 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
         countDown()
     }
 
-    fun setEndTime(time : Int) {
+    fun setEndTime(time: Int) {
         endValue = time
     }
 
-    fun setStartTime(time : Int) {
-        if(time > endValue) {
+    fun setStartTime(time: Int) {
+        if (time > endValue) {
             currentValue = startValue
         }
     }
 
-    fun enableOrDisableAnimation(isEnabled : Boolean) {
+    fun enableOrDisableAnimation(isEnabled: Boolean) {
         isPulsationEnabled = isEnabled
     }
 
     //endregion
 
-    //region Schedulers
+    //region Scheduling
     private fun scheduleCountDown(delay: Long) {
         countDownHandler.postDelayed(updateRunnable, delay)
     }
@@ -156,6 +168,9 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
                 else -> {
                     countDownState = CountDownState.FINISHED
                     listener?.onFinished()
+                    onFinished?.let { onFinished ->
+                        onFinished()
+                    }
                 }
             }
             isPlayingScaleAnimation = !isPlayingScaleAnimation
