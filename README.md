@@ -57,8 +57,8 @@ Or Maven:
 The start and end count down values can be initialised in XML using the following code.
 
 ```
-app:endTimerValue="0"
 app:startTimerValue="5"
+app:endTimerValue="0"
 ```
 
 or alternatively it can be initialised in Kotlin.
@@ -68,10 +68,10 @@ tvCounter.setStartTime(5)
 tvCounter.setEndTime(0)
 ```
 
-Note: The app library's default start time is 5 seconds and end time 0 seconds.
+Note: The library's default start time is 5 seconds and end time 0 seconds.
 
-To start the countdown where we only intercept the `onFinished` event we can simply call the
-following.
+To start the countdown where we only intercept the `onFinished` event we can simply use the
+following code.
 
 ```
 tvCounter.start {
@@ -79,7 +79,7 @@ tvCounter.start {
 }
 ```
 
-Your countdowns additionally can be stopped, started, resumed, paused or restarted with the
+Your countdowns additionally can be stopped, started, resumed, paused or restarted using the
 following functions.
 
 ```
@@ -104,7 +104,7 @@ onFinished() (Mandatory)
 ```
 
 The above events can either be implemented as an interface in your fragment or activity and passed
-to `start()` or alternatively using the following sample code.
+to `start()` or alternatively by using the following sample code.
 
 ```
     tvCounter.start(
@@ -147,7 +147,7 @@ to `start()` or alternatively using the following sample code.
 ```
 
 The library also comes out the box with a default scale and alpha animation which is demonstrated in
-the gif above, but this can also be disabled using the following:
+the gif above, but this can also be disabled by adding the following code:
 
 In XML:
 
