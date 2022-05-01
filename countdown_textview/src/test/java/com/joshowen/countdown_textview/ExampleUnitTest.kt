@@ -1,4 +1,4 @@
-package com.joshowen.countdowntextview
+package com.joshowen.countdown_textview
 
 import org.junit.Test
 

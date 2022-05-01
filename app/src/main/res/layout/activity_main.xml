@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.joshowen.countdowntextview.CountDownTextView
+    <com.joshowen.countdown_textview.CountDownTextView
         android:id="@+id/countdown1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:pulsationEnabled="true"
         app:startTimerValue="5" />
 
-    <com.joshowen.countdowntextview.CountDownTextView
+    <com.joshowen.countdown_textview.CountDownTextView
         android:id="@+id/countdown2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
