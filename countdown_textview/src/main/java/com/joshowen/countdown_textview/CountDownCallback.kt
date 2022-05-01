@@ -1,4 +1,4 @@
-package com.joshowen.countdowntextview
+package com.joshowen.countdown_textview
 
 interface CountDownCallback {
     fun onPause() {}

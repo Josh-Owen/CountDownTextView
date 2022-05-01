@@ -1,4 +1,4 @@
-package com.joshowen.countdowntextview
+package com.joshowen.countdown_textview
 
 internal const val DEFAULT_IS_PULSATION_ENABLED = true
 internal const val DEFAULT_START_VALUE = 5

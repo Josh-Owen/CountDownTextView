@@ -1,4 +1,4 @@
-package com.joshowen.countdowntextview
+package com.joshowen.countdown_textview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

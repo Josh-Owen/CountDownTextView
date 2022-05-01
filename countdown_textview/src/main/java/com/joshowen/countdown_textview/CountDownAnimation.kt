@@ -1,4 +1,4 @@
-package com.joshowen.countdowntextview
+package com.joshowen.countdown_textview
 
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
