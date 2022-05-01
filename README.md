@@ -31,7 +31,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.Josh-Owen:CountDownTextView:1.0.0'
+    implementation 'com.github.Josh-Owen:CountDownTextView:1.0.1'
 }
 ```
 
@@ -48,7 +48,7 @@ Or Maven:
 <dependency>
     <groupId>com.github.Josh-Owen</groupId>
     <artifactId>CountDownTextView</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
