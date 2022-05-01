@@ -88,15 +88,17 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     fun start(callback: CountDownCallback) {
         listener = callback
         currentValue = startValue
-        listener?.onStart()
+        countDownState = CountDownState.PLAYING
         countDown()
+        listener?.onStart()
     }
 
     fun start(onFinished: () -> Unit) {
         currentValue = startValue
-        listener?.onStart()
         this.onFinished = onFinished
+        countDownState = CountDownState.PLAYING
         countDown()
+        listener?.onStart()
     }
 
     fun stop() {
@@ -110,7 +112,7 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
     }
 
     fun resume() {
-        if (countDownState != CountDownState.STOPPED) {
+        if (countDownState != CountDownState.STOPPED && countDownState != CountDownState.PLAYING && countDownState != CountDownState.FINISHED) {
             countDownState = CountDownState.PLAYING
             listener?.onResume()
             countDown()
@@ -122,8 +124,8 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
         currentValue = startValue
         countDownHandler.removeCallbacks(updateRunnable)
         countDownState = CountDownState.PLAYING
-        listener?.onRestart()
         countDown()
+        listener?.onRestart()
     }
 
     fun setEndTime(time: Int) {
