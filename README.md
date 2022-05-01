@@ -68,7 +68,7 @@ tvCounter.setStartTime(5)
 tvCounter.setEndTime(0)
 ```
 
-Note: The app default start time is 5 seconds and end time 0 seconds.
+Note: The app library's default start time is 5 seconds and end time 0 seconds.
 
 To start the countdown where we only intercept the `onFinished` event we can simply call the
 following.
