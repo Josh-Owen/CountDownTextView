@@ -5,9 +5,9 @@
 CountDownTextView is a lightweight library used to implement simple countdown's which can be
 stopped, started, paused and resumed. The widget
 extends [TextView](https://developer.android.com/reference/android/widget/TextView) behaviour and
-can be styled as and how you wish and includes a comprehensive list of callbacks for every possible
-event you might need to intercept. Out the box it comes with a default animation blend which can be
-switched out to an animation of your choosing or disabled entirely.
+can be styled as and how you wish. The library also includes a comprehensive list of callbacks for every possible
+event you might need to intercept in addition to a default animation blend which can be
+switched out to an animation of your choosing or disabled entirely depending on your requirements.
 
 ![](Images/preview.gif)
 
