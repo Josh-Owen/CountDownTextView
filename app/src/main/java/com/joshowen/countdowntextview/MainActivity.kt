@@ -19,23 +19,27 @@ class MainActivity : AppCompatActivity() {
         val btnRestart = findViewById<Button>(R.id.btnRestart)
 
         btnResume.setOnClickListener {
+            tvCounter1.resume()
             tvCounter2.resume()
         }
 
         btnPause.setOnClickListener {
+            tvCounter1.pause()
             tvCounter2.pause()
         }
 
         btnStop.setOnClickListener {
+            tvCounter1.stop()
             tvCounter2.stop()
         }
 
         btnRestart.setOnClickListener {
+            tvCounter1.restart()
             tvCounter2.restart()
         }
 
 
-        tvCounter1.enableOrDisableAnimation(false)
+        tvCounter1.enableOrDisablePulsation(false)
         tvCounter1.start {
             Log.e("CountDown: " ,"onFinished 1")
         }

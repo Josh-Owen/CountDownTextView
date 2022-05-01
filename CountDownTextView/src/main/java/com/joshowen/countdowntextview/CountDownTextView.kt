@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.view.animation.AlphaAnimation
+import android.view.animation.ScaleAnimation
 import androidx.appcompat.widget.AppCompatTextView
 
 class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
@@ -134,7 +136,15 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
         }
     }
 
-    fun enableOrDisableAnimation(isEnabled: Boolean) {
+    fun setScaleAnimation(newAnimation : ScaleAnimation) {
+        scaleAnimation = newAnimation
+    }
+
+    fun setAlphaAnimation(newAnimation : AlphaAnimation) {
+        alphaAnimation = newAnimation
+    }
+
+    fun enableOrDisablePulsation(isEnabled: Boolean) {
         isPulsationEnabled = isEnabled
     }
 
