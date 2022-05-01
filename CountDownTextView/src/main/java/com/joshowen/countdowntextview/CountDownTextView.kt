@@ -144,7 +144,7 @@ class CountDownTextView(context: Context, attrs: AttributeSet?) : AppCompatTextV
         alphaAnimation = newAnimation
     }
 
-    fun enableOrDisableAnimation(isEnabled: Boolean) {
+    fun enableOrDisablePulsation(isEnabled: Boolean) {
         isPulsationEnabled = isEnabled
     }
 

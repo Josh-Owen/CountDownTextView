@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        tvCounter1.enableOrDisableAnimation(false)
+        tvCounter1.enableOrDisablePulsation(false)
         tvCounter1.start {
             Log.e("CountDown: " ,"onFinished 1")
         }
