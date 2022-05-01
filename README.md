@@ -51,23 +51,24 @@ Or Maven:
 
 The start and end count down values can be initialised in XML using the following code.
 
-``
+```
 app:endTimerValue="0"
 app:startTimerValue="5"
-``
+```
 
 or alternatively it can be initialised in Kotlin. 
-``
+```
 tvCounter.setStartTime(5)
 tvCounter.setEndTime(0)
-``
+```
 
 To start the countdown where we only intercept the onFinished event we can call the following.
 
-``
+```
 tvCounter.start {
     // onFinished logic here
-}``
+}
+```
 
 Your countdowns also additionally can be stopped, started, resumed, paused or restarted with the following functions.
 
@@ -92,7 +93,7 @@ onFinished() (Mandatory)
 
 The above events can either be implemented as an interface in your fragment or activity and passed to `start()` as a parameter or alternatively using the following sample code. 
 
-````
+```
         tvCounter.start(
             object : CountDownCallback {
 
@@ -131,19 +132,21 @@ The above events can either be implemented as an interface in your fragment or a
                 }
             }
         )
-````
+```
 
 As well as providing callbacks, the library also comes out the box with a default scale and alpha animation which is demonstrated in the gif above, but this can also be disabled using the following:
 
 In XML
 
-``app:pulsationEnabled="false"``
+```
+app:pulsationEnabled="false"
+```
 
 Or in Kotlin 
 
-``
+```
 tvCounter.enableOrDisablePulsation(false)
-``
+```
 
 The animation can also be customised by passing a new [Scale Animation](https://developer.android.com/reference/android/view/animation/ScaleAnimation) or [Alpha Animation](https://developer.android.com/reference/android/view/animation/AlphaAnimation) to the following functions:
 
@@ -156,6 +159,4 @@ Note: There are code samples demonstrating the usage of CountDownTextView in the
 
 And that is all folks! I am open to suggestions in how to further improve this library to increase it's utility.
 
-Be kind & help others. Cya! 
-
-
+Be kind & help others. Cya!
