@@ -114,8 +114,8 @@ to `start()` or alternatively by using the following sample code.
             }
 
             override fun onPause() {
-                    super.onPause()
-                    Log.e("CountDown: " ,"onPause")
+                super.onPause()
+                Log.e("CountDown: " ,"onPause")
             }
 
             override fun onResume() {
